@@ -1,0 +1,20 @@
+{
+  "kind": "exception",
+  "signature": "IndexError:comments.py:527",
+  "exception": "IndexError",
+  "message": "list index out of range",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\KubeSec-master\\fuzz.py\", line 279, in evaluate\n    check(target, copy.deepcopy(data), scratch)\n  File \"D:\\KubeSec-master\\fuzz.py\", line 263, in check\n    actual = subject.checkIfValidK8SYaml(str(path))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 96, in checkIfValidK8SYaml\n    yaml_dict    = getSingleDict4MultiDocs( dict_as_list )\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 379, in getSingleDict4MultiDocs\n    dic = dic[0]\n          ~~~^^^\n  File \"D:\\KubeSec-master\\.venv\\Lib\\site-packages\\ruamel\\yaml\\compat.py\", line 217, in __getitem__\n    return self.__getsingleitem__(index)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\.venv\\Lib\\site-packages\\ruamel\\yaml\\comments.py\", line 527, in __getsingleitem__\n    return list.__getitem__(self, idx)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nIndexError: list index out of range\n",
+  "target": "parser.checkIfValidK8SYaml",
+  "seed": 5710,
+  "case_index": 7,
+  "input": {
+    "mapping": [
+      [
+        "text",
+        "[]\n"
+      ]
+    ]
+  },
+  "occurrences": 4,
+  "id": "6bd7c0543bc1"
+}

@@ -1,0 +1,2 @@
+# Only dependency needed by fuzz.py and the existing parsing tests.
+ruamel.yaml==0.17.21

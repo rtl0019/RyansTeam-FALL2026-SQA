@@ -1,0 +1,35 @@
+{
+  "kind": "contract",
+  "signature": "all-key-occurrences",
+  "expected": [
+    [
+      "a",
+      0
+    ]
+  ],
+  "actual": [],
+  "target": "parser.getKeyRecursively",
+  "seed": 5710,
+  "case_index": 1,
+  "input": {
+    "mapping": [
+      [
+        "tree",
+        {
+          "mapping": [
+            [
+              "a",
+              []
+            ]
+          ]
+        }
+      ],
+      [
+        "target",
+        "needle"
+      ]
+    ]
+  },
+  "occurrences": 109,
+  "id": "e16f3bb9e2d1"
+}

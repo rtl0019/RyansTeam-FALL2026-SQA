@@ -1,0 +1,22 @@
+{
+  "kind": "exception",
+  "signature": "IndexError:parser.py:379",
+  "exception": "IndexError",
+  "message": "list index out of range",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\KubeSec-master\\fuzz.py\", line 279, in evaluate\n    check(target, copy.deepcopy(data), scratch)\n  File \"D:\\KubeSec-master\\fuzz.py\", line 245, in check\n    actual = subject.getSingleDict4MultiDocs(documents)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 379, in getSingleDict4MultiDocs\n    dic = dic[0]\n          ~~~^^^\nIndexError: list index out of range\n",
+  "target": "parser.getSingleDict4MultiDocs",
+  "seed": 5710,
+  "case_index": 2,
+  "input": {
+    "mapping": [
+      [
+        "documents",
+        [
+          []
+        ]
+      ]
+    ]
+  },
+  "occurrences": 141,
+  "id": "08391fe626e5"
+}

@@ -1,0 +1,16 @@
+Determinism: identical summary for repeated seed 5710
+Replayed: parser.getKeyRecursively all-key-occurrences
+Replayed: parser.getKeyRecursively correct-key-depths
+Replayed: parser.getValsFromKey all-matching-key-values
+Replayed: parser.find_json_path_keys TypeError:parser.py:255
+Replayed: parser.getSingleDict4MultiDocs IndexError:parser.py:379
+Replayed: parser.getSingleDict4MultiDocs TypeError:parser.py:402
+Replayed: parser.getSingleDict4MultiDocs merge-preserves-entry-count
+Replayed: parser.loadMultiYAML TypeError:parser.py:255
+Replayed: parser.checkIfValidK8SYaml TypeError:parser.py:255
+Replayed: parser.checkIfValidK8SYaml IndexError:comments.py:527
+Replayed: parser.checkIfValidK8SYaml validator-false-positive
+Replayed: parser.checkIfValidK8SYaml validator-false-negative
+Timeout handling: incomplete run returned exit code 2
+Strict mode: findings returned exit code 1
+All harness verification checks passed

@@ -162,3 +162,7 @@ cython_debug/
 /tools/*.exe
 /SLIKUBE.sarif
 /sample-manifests/slikube_results.csv
+
+# Fuzz scratch runs (baseline evidence is tracked separately)
+/fuzz-results/
+/evidence/fuzz-seed-5710/

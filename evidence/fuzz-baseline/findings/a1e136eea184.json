@@ -1,0 +1,19 @@
+{
+  "kind": "contract",
+  "signature": "validator-false-positive",
+  "expected": false,
+  "actual": true,
+  "target": "parser.checkIfValidK8SYaml",
+  "seed": 5710,
+  "case_index": 10,
+  "input": {
+    "mapping": [
+      [
+        "text",
+        "apiVersion: ''\nkind: Pod\n"
+      ]
+    ]
+  },
+  "occurrences": 41,
+  "id": "a1e136eea184"
+}

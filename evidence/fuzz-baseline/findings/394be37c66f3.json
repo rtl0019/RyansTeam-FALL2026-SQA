@@ -1,0 +1,20 @@
+{
+  "kind": "exception",
+  "signature": "TypeError:parser.py:255",
+  "exception": "TypeError",
+  "message": "expected string or bytes-like object, got 'NoneType'",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\KubeSec-master\\fuzz.py\", line 279, in evaluate\n    check(target, copy.deepcopy(data), scratch)\n  File \"D:\\KubeSec-master\\fuzz.py\", line 263, in check\n    actual = subject.checkIfValidK8SYaml(str(path))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 95, in checkIfValidK8SYaml\n    dict_as_list = loadMultiYAML( path2yaml )\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 177, in loadMultiYAML\n    path = find_json_path_keys(dicts2ret)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 293, in find_json_path_keys\n    find_json_path_keys(value, parent_path=path, paths=paths)\n  File \"D:\\KubeSec-master\\parser.py\", line 255, in find_json_path_keys\n    if regex_key_dot.match(key):\n    ^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: expected string or bytes-like object, got 'NoneType'\n",
+  "target": "parser.checkIfValidK8SYaml",
+  "seed": 5710,
+  "case_index": 5,
+  "input": {
+    "mapping": [
+      [
+        "text",
+        "null: alpha\n"
+      ]
+    ]
+  },
+  "occurrences": 25,
+  "id": "394be37c66f3"
+}

@@ -1,0 +1,461 @@
+{
+  "schema_version": 1,
+  "seed": 5710,
+  "cases_per_method": 300,
+  "target_count": 10,
+  "completed_target_count": 10,
+  "total_cases": 3000,
+  "finding_groups": 12,
+  "methods": [
+    {
+      "target": "parser.keyMiner",
+      "cases_executed": 300,
+      "boundary_cases": 10,
+      "generated_cases": 290,
+      "findings": []
+    },
+    {
+      "target": "parser.getKeyRecursively",
+      "cases_executed": 300,
+      "boundary_cases": 10,
+      "generated_cases": 290,
+      "findings": [
+        {
+          "kind": "contract",
+          "signature": "all-key-occurrences",
+          "expected": [
+            [
+              "a",
+              0
+            ]
+          ],
+          "actual": [],
+          "target": "parser.getKeyRecursively",
+          "seed": 5710,
+          "case_index": 1,
+          "input": {
+            "mapping": [
+              [
+                "tree",
+                {
+                  "mapping": [
+                    [
+                      "a",
+                      []
+                    ]
+                  ]
+                }
+              ],
+              [
+                "target",
+                "needle"
+              ]
+            ]
+          },
+          "occurrences": 109,
+          "id": "e16f3bb9e2d1"
+        },
+        {
+          "kind": "contract",
+          "signature": "correct-key-depths",
+          "expected": [
+            [
+              "a",
+              0
+            ],
+            [
+              "b",
+              0
+            ]
+          ],
+          "actual": [
+            [
+              "a",
+              0
+            ],
+            [
+              "b",
+              1
+            ]
+          ],
+          "target": "parser.getKeyRecursively",
+          "seed": 5710,
+          "case_index": 3,
+          "input": {
+            "mapping": [
+              [
+                "tree",
+                {
+                  "mapping": [
+                    [
+                      "a",
+                      {
+                        "mapping": []
+                      }
+                    ],
+                    [
+                      "b",
+                      1
+                    ]
+                  ]
+                }
+              ],
+              [
+                "target",
+                "needle"
+              ]
+            ]
+          },
+          "occurrences": 20,
+          "id": "5b1203b61aef"
+        }
+      ]
+    },
+    {
+      "target": "parser.getValuesRecursively",
+      "cases_executed": 300,
+      "boundary_cases": 10,
+      "generated_cases": 290,
+      "findings": []
+    },
+    {
+      "target": "parser.getValsFromKey",
+      "cases_executed": 300,
+      "boundary_cases": 10,
+      "generated_cases": 290,
+      "findings": [
+        {
+          "kind": "contract",
+          "signature": "all-matching-key-values",
+          "expected": [
+            {
+              "mapping": [
+                [
+                  "target",
+                  "needle"
+                ]
+              ]
+            },
+            "needle"
+          ],
+          "actual": [
+            {
+              "mapping": [
+                [
+                  "target",
+                  "needle"
+                ]
+              ]
+            }
+          ],
+          "target": "parser.getValsFromKey",
+          "seed": 5710,
+          "case_index": 5,
+          "input": {
+            "mapping": [
+              [
+                "tree",
+                {
+                  "mapping": [
+                    [
+                      "target",
+                      {
+                        "mapping": [
+                          [
+                            "target",
+                            "needle"
+                          ]
+                        ]
+                      }
+                    ]
+                  ]
+                }
+              ],
+              [
+                "target",
+                "target"
+              ]
+            ]
+          },
+          "occurrences": 3,
+          "id": "879dbc6423ec"
+        }
+      ]
+    },
+    {
+      "target": "parser.find_json_path_keys",
+      "cases_executed": 300,
+      "boundary_cases": 10,
+      "generated_cases": 290,
+      "findings": [
+        {
+          "kind": "exception",
+          "signature": "TypeError:parser.py:255",
+          "exception": "TypeError",
+          "message": "expected string or bytes-like object, got 'NoneType'",
+          "traceback": "Traceback (most recent call last):\n  File \"D:\\KubeSec-master\\fuzz.py\", line 279, in evaluate\n    check(target, copy.deepcopy(data), scratch)\n  File \"D:\\KubeSec-master\\fuzz.py\", line 222, in check\n    actual = subject.find_json_path_keys(data[\"tree\"])\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 255, in find_json_path_keys\n    if regex_key_dot.match(key):\n    ^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: expected string or bytes-like object, got 'NoneType'\n",
+          "target": "parser.find_json_path_keys",
+          "seed": 5710,
+          "case_index": 8,
+          "input": {
+            "mapping": [
+              [
+                "tree",
+                {
+                  "mapping": [
+                    [
+                      null,
+                      "alpha"
+                    ]
+                  ]
+                }
+              ],
+              [
+                "target",
+                "needle"
+              ]
+            ]
+          },
+          "occurrences": 74,
+          "id": "4c3cb7c61977"
+        }
+      ]
+    },
+    {
+      "target": "parser.update_json_paths",
+      "cases_executed": 300,
+      "boundary_cases": 5,
+      "generated_cases": 295,
+      "findings": []
+    },
+    {
+      "target": "parser.getSingleDict4MultiDocs",
+      "cases_executed": 300,
+      "boundary_cases": 7,
+      "generated_cases": 293,
+      "findings": [
+        {
+          "kind": "exception",
+          "signature": "IndexError:parser.py:379",
+          "exception": "IndexError",
+          "message": "list index out of range",
+          "traceback": "Traceback (most recent call last):\n  File \"D:\\KubeSec-master\\fuzz.py\", line 279, in evaluate\n    check(target, copy.deepcopy(data), scratch)\n  File \"D:\\KubeSec-master\\fuzz.py\", line 245, in check\n    actual = subject.getSingleDict4MultiDocs(documents)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 379, in getSingleDict4MultiDocs\n    dic = dic[0]\n          ~~~^^^\nIndexError: list index out of range\n",
+          "target": "parser.getSingleDict4MultiDocs",
+          "seed": 5710,
+          "case_index": 2,
+          "input": {
+            "mapping": [
+              [
+                "documents",
+                [
+                  []
+                ]
+              ]
+            ]
+          },
+          "occurrences": 141,
+          "id": "08391fe626e5"
+        },
+        {
+          "kind": "exception",
+          "signature": "TypeError:parser.py:402",
+          "exception": "TypeError",
+          "message": "unsupported operand type(s) for +: 'int' and 'str'",
+          "traceback": "Traceback (most recent call last):\n  File \"D:\\KubeSec-master\\fuzz.py\", line 279, in evaluate\n    check(target, copy.deepcopy(data), scratch)\n  File \"D:\\KubeSec-master\\fuzz.py\", line 245, in check\n    actual = subject.getSingleDict4MultiDocs(documents)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 402, in getSingleDict4MultiDocs\n    dict2ret[k_ + constants.DOT_SYMBOL + constants.YAML_DOC_KW + str(counter)] = dic[k_]\n             ~~~^~~~~~~~~~~~~~~~~~~~~~\nTypeError: unsupported operand type(s) for +: 'int' and 'str'\n",
+          "target": "parser.getSingleDict4MultiDocs",
+          "seed": 5710,
+          "case_index": 4,
+          "input": {
+            "mapping": [
+              [
+                "documents",
+                [
+                  {
+                    "mapping": [
+                      [
+                        1,
+                        "a"
+                      ]
+                    ]
+                  },
+                  {
+                    "mapping": [
+                      [
+                        1,
+                        "b"
+                      ]
+                    ]
+                  }
+                ]
+              ]
+            ]
+          },
+          "occurrences": 1,
+          "id": "951e3d0669be"
+        },
+        {
+          "kind": "contract",
+          "signature": "merge-preserves-entry-count",
+          "expected": 3,
+          "actual": 2,
+          "target": "parser.getSingleDict4MultiDocs",
+          "seed": 5710,
+          "case_index": 6,
+          "input": {
+            "mapping": [
+              [
+                "documents",
+                [
+                  {
+                    "mapping": [
+                      [
+                        "a",
+                        1
+                      ],
+                      [
+                        "a.YAML.DOC.1",
+                        2
+                      ]
+                    ]
+                  },
+                  {
+                    "mapping": [
+                      [
+                        "a",
+                        3
+                      ]
+                    ]
+                  }
+                ]
+              ]
+            ]
+          },
+          "occurrences": 1,
+          "id": "67d7b50e3d5c"
+        }
+      ]
+    },
+    {
+      "target": "parser.loadMultiYAML",
+      "cases_executed": 300,
+      "boundary_cases": 24,
+      "generated_cases": 276,
+      "findings": [
+        {
+          "kind": "exception",
+          "signature": "TypeError:parser.py:255",
+          "exception": "TypeError",
+          "message": "expected string or bytes-like object, got 'NoneType'",
+          "traceback": "Traceback (most recent call last):\n  File \"D:\\KubeSec-master\\fuzz.py\", line 279, in evaluate\n    check(target, copy.deepcopy(data), scratch)\n  File \"D:\\KubeSec-master\\fuzz.py\", line 259, in check\n    actual = subject.loadMultiYAML(str(path))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 177, in loadMultiYAML\n    path = find_json_path_keys(dicts2ret)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 293, in find_json_path_keys\n    find_json_path_keys(value, parent_path=path, paths=paths)\n  File \"D:\\KubeSec-master\\parser.py\", line 255, in find_json_path_keys\n    if regex_key_dot.match(key):\n    ^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: expected string or bytes-like object, got 'NoneType'\n",
+          "target": "parser.loadMultiYAML",
+          "seed": 5710,
+          "case_index": 5,
+          "input": {
+            "mapping": [
+              [
+                "text",
+                "null: alpha\n"
+              ]
+            ]
+          },
+          "occurrences": 50,
+          "id": "2e00510aefe4"
+        }
+      ]
+    },
+    {
+      "target": "parser.checkParseError",
+      "cases_executed": 300,
+      "boundary_cases": 24,
+      "generated_cases": 276,
+      "findings": []
+    },
+    {
+      "target": "parser.checkIfValidK8SYaml",
+      "cases_executed": 300,
+      "boundary_cases": 24,
+      "generated_cases": 276,
+      "findings": [
+        {
+          "kind": "exception",
+          "signature": "TypeError:parser.py:255",
+          "exception": "TypeError",
+          "message": "expected string or bytes-like object, got 'NoneType'",
+          "traceback": "Traceback (most recent call last):\n  File \"D:\\KubeSec-master\\fuzz.py\", line 279, in evaluate\n    check(target, copy.deepcopy(data), scratch)\n  File \"D:\\KubeSec-master\\fuzz.py\", line 263, in check\n    actual = subject.checkIfValidK8SYaml(str(path))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 95, in checkIfValidK8SYaml\n    dict_as_list = loadMultiYAML( path2yaml )\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 177, in loadMultiYAML\n    path = find_json_path_keys(dicts2ret)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 293, in find_json_path_keys\n    find_json_path_keys(value, parent_path=path, paths=paths)\n  File \"D:\\KubeSec-master\\parser.py\", line 255, in find_json_path_keys\n    if regex_key_dot.match(key):\n    ^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: expected string or bytes-like object, got 'NoneType'\n",
+          "target": "parser.checkIfValidK8SYaml",
+          "seed": 5710,
+          "case_index": 5,
+          "input": {
+            "mapping": [
+              [
+                "text",
+                "null: alpha\n"
+              ]
+            ]
+          },
+          "occurrences": 25,
+          "id": "394be37c66f3"
+        },
+        {
+          "kind": "exception",
+          "signature": "IndexError:comments.py:527",
+          "exception": "IndexError",
+          "message": "list index out of range",
+          "traceback": "Traceback (most recent call last):\n  File \"D:\\KubeSec-master\\fuzz.py\", line 279, in evaluate\n    check(target, copy.deepcopy(data), scratch)\n  File \"D:\\KubeSec-master\\fuzz.py\", line 263, in check\n    actual = subject.checkIfValidK8SYaml(str(path))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 96, in checkIfValidK8SYaml\n    yaml_dict    = getSingleDict4MultiDocs( dict_as_list )\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 379, in getSingleDict4MultiDocs\n    dic = dic[0]\n          ~~~^^^\n  File \"D:\\KubeSec-master\\.venv\\Lib\\site-packages\\ruamel\\yaml\\compat.py\", line 217, in __getitem__\n    return self.__getsingleitem__(index)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\.venv\\Lib\\site-packages\\ruamel\\yaml\\comments.py\", line 527, in __getsingleitem__\n    return list.__getitem__(self, idx)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nIndexError: list index out of range\n",
+          "target": "parser.checkIfValidK8SYaml",
+          "seed": 5710,
+          "case_index": 7,
+          "input": {
+            "mapping": [
+              [
+                "text",
+                "[]\n"
+              ]
+            ]
+          },
+          "occurrences": 4,
+          "id": "6bd7c0543bc1"
+        },
+        {
+          "kind": "contract",
+          "signature": "validator-false-positive",
+          "expected": false,
+          "actual": true,
+          "target": "parser.checkIfValidK8SYaml",
+          "seed": 5710,
+          "case_index": 10,
+          "input": {
+            "mapping": [
+              [
+                "text",
+                "apiVersion: ''\nkind: Pod\n"
+              ]
+            ]
+          },
+          "occurrences": 41,
+          "id": "a1e136eea184"
+        },
+        {
+          "kind": "contract",
+          "signature": "validator-false-negative",
+          "expected": true,
+          "actual": false,
+          "target": "parser.checkIfValidK8SYaml",
+          "seed": 5710,
+          "case_index": 12,
+          "input": {
+            "mapping": [
+              [
+                "text",
+                "apiVersion: v1\nkind: Pod\nmetadata:\n  labels:\n    note: List\n"
+              ]
+            ]
+          },
+          "occurrences": 13,
+          "id": "566944e285a1"
+        }
+      ]
+    }
+  ],
+  "harness_errors": []
+}

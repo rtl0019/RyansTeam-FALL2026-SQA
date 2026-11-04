@@ -1,0 +1,12 @@
+parser.keyMiner: 300 cases, 0 finding groups
+parser.getKeyRecursively: 300 cases, 2 finding groups
+parser.getValuesRecursively: 300 cases, 0 finding groups
+parser.getValsFromKey: 300 cases, 1 finding groups
+parser.find_json_path_keys: 300 cases, 1 finding groups
+parser.update_json_paths: 300 cases, 0 finding groups
+parser.getSingleDict4MultiDocs: 300 cases, 3 finding groups
+parser.loadMultiYAML: 300 cases, 1 finding groups
+parser.checkParseError: 300 cases, 0 finding groups
+parser.checkIfValidK8SYaml: 300 cases, 4 finding groups
+Completed 10/10 methods, 3000 cases, 12 finding groups in 15.3s.
+Evidence: fuzz-results\repeat-5710\summary.json

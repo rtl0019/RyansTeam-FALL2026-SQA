@@ -1,0 +1,56 @@
+{
+  "kind": "contract",
+  "signature": "all-matching-key-values",
+  "expected": [
+    {
+      "mapping": [
+        [
+          "target",
+          "needle"
+        ]
+      ]
+    },
+    "needle"
+  ],
+  "actual": [
+    {
+      "mapping": [
+        [
+          "target",
+          "needle"
+        ]
+      ]
+    }
+  ],
+  "target": "parser.getValsFromKey",
+  "seed": 5710,
+  "case_index": 5,
+  "input": {
+    "mapping": [
+      [
+        "tree",
+        {
+          "mapping": [
+            [
+              "target",
+              {
+                "mapping": [
+                  [
+                    "target",
+                    "needle"
+                  ]
+                ]
+              }
+            ]
+          ]
+        }
+      ],
+      [
+        "target",
+        "target"
+      ]
+    ]
+  },
+  "occurrences": 3,
+  "id": "879dbc6423ec"
+}

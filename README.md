@@ -17,7 +17,8 @@ This project applies software quality assurance activities to the supplied SLI-K
 - Startup imports and command-line invocation corrected in main.py; the supplied version is saved as main.py.original.
 - Existing parsing tests: 23 passed during setup on October 26, 2026.
 - Sample scan: CSV and SARIF reports generated successfully during setup.
-- Assignment fuzzing, forensic instrumentation, and updated GitHub Actions integration are still pending.
+- Fuzzing implemented for 10 parser methods; two seeds completed 6,000 cases and exposed nine documented defect categories. See [FUZZING.md](FUZZING.md) and [baseline evidence](evidence/fuzz-baseline/summary.json).
+- Forensic instrumentation and the final assignment report remain pending.
 
 ## Run locally on Windows
 
@@ -48,14 +49,22 @@ Some other original tests depend on paths from the original author's machine and
 
 ## Assignment deliverables still to complete
 
-- Automatic fuzzing of 10 Python methods in fuzz.py and a report of discovered bugs.
+- Review the findings in FUZZING.md and incorporate the fuzzing results into the final report.
 - Forensic instrumentation of 10 Python methods.
 - GitHub Actions that execute the required checks and fuzz.py.
 - SQA-REPO.md describing completed activities and personal lessons learned.
 - Code, logs, and screenshots demonstrating execution.
 
-The supplied workflow is preserved at reference/python.build.yml. It is inactive; assignment CI integration is not yet complete. The current GitHub Git authentication lacks workflow upload permission, which will need to be addressed when CI is configured.
+The supplied workflow is preserved at reference/python.build.yml. A new parser-fuzzing workflow is being published separately. Broader scanner and forensic CI integration remains pending.
 
 ## Publication preparation
 
 A Grafana token in comments in the supplied helm.values.yaml and helm.stackgres.yaml test fixtures was replaced with an explicit dummy value after GitHub push protection flagged it. The 23 existing parsing tests passed again after this change.
+
+## Fuzz ten methods
+
+```powershell
+.\.venv\Scripts\python.exe fuzz.py --seed 5710 --cases 300
+```
+
+This runs 300 cases per method and writes JSON summaries and replayable failures to fuzz-results/. Discovery mode reports bugs without failing solely on findings; timeouts and harness errors still fail. Use --fail-on-findings for strict mode. The baseline findings remain unfixed and can be reproduced using the commands in [FUZZING.md](FUZZING.md).

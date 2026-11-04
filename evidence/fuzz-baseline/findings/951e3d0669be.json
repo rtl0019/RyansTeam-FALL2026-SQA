@@ -1,0 +1,37 @@
+{
+  "kind": "exception",
+  "signature": "TypeError:parser.py:402",
+  "exception": "TypeError",
+  "message": "unsupported operand type(s) for +: 'int' and 'str'",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\KubeSec-master\\fuzz.py\", line 279, in evaluate\n    check(target, copy.deepcopy(data), scratch)\n  File \"D:\\KubeSec-master\\fuzz.py\", line 245, in check\n    actual = subject.getSingleDict4MultiDocs(documents)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\KubeSec-master\\parser.py\", line 402, in getSingleDict4MultiDocs\n    dict2ret[k_ + constants.DOT_SYMBOL + constants.YAML_DOC_KW + str(counter)] = dic[k_]\n             ~~~^~~~~~~~~~~~~~~~~~~~~~\nTypeError: unsupported operand type(s) for +: 'int' and 'str'\n",
+  "target": "parser.getSingleDict4MultiDocs",
+  "seed": 5710,
+  "case_index": 4,
+  "input": {
+    "mapping": [
+      [
+        "documents",
+        [
+          {
+            "mapping": [
+              [
+                1,
+                "a"
+              ]
+            ]
+          },
+          {
+            "mapping": [
+              [
+                1,
+                "b"
+              ]
+            ]
+          }
+        ]
+      ]
+    ]
+  },
+  "occurrences": 1,
+  "id": "951e3d0669be"
+}
