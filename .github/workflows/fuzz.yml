@@ -1,0 +1,59 @@
+name: Parser fuzzing
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fuzz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-fuzz.txt
+      - name: Install parser and fuzz dependencies
+        run: python -m pip install -r requirements-fuzz.txt
+      - name: Run existing parsing tests
+        run: python TEST_PARSING.py
+      - name: Fuzz ten parser methods
+        run: python fuzz.py --seed 5710 --cases 300 --timeout 30 --output fuzz-results | tee fuzz-run.txt
+      - name: Publish honest discovery summary
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          path = Path('fuzz-results/summary.json')
+          if path.exists():
+              data = json.loads(path.read_text())
+              with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as out:
+                  out.write('## Parser fuzzing results\n\n')
+                  out.write(f"Completed {data['completed_target_count']}/10 methods; {data['total_cases']} cases.\n\n")
+                  out.write(f"**{data['finding_groups']} finding groups** (some share a root cause).\n\n")
+                  out.write('Discovery mode reports upstream bugs without failing the job. A green job means the campaign completed, not that the code is bug-free. Infrastructure errors fail the job. See the evidence artifact and FUZZING.md.\n')
+          PY
+      - name: Save fuzzing evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parser-fuzz-evidence
+          path: |
+            fuzz-results/
+            fuzz-run.txt
+          retention-days: 30
+          if-no-files-found: warn
