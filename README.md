@@ -51,11 +51,11 @@ Some other original tests depend on paths from the original author's machine and
 
 - Review the findings in FUZZING.md and incorporate the fuzzing results into the final report.
 - Forensic instrumentation of 10 Python methods.
-- GitHub Actions that execute the required checks and fuzz.py.
+- Integrate forensic execution evidence into the existing parser-test/fuzz CI workflow after instrumentation.
 - SQA-REPO.md describing completed activities and personal lessons learned.
 - Code, logs, and screenshots demonstrating execution.
 
-The supplied workflow is preserved at reference/python.build.yml. A new parser-fuzzing workflow is being published separately. Broader scanner and forensic CI integration remains pending.
+The supplied workflow is preserved at reference/python.build.yml. The active .github/workflows/fuzz.yml automatically runs the parsing tests and fuzz.py on pushes and pull requests to main. [The first run succeeded](https://github.com/rtl0019/RyansTeam-FALL2026-SQA/actions/runs/41898382445), with downloadable evidence and an explicit discovery-mode summary. Forensic instrumentation is still pending.
 
 ## Publication preparation
 

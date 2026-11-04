@@ -11,8 +11,9 @@ Boundary cases were selected after inspecting the source. They include empty
 sequences, repeated keys in separate documents, scalar YAML keys, and nested
 matching keys. Generated inputs vary nesting, keys, values, document counts,
 path indices, and YAML text. Text mutations truncate documents, append malformed
-syntax or additional documents, and prepend comments. Every generated structure
-has a maximum depth of three and a maximum branching factor of three. Inputs
+syntax or additional documents, and prepend comments. Random object trees stop expanding at depth three and have at most three
+children per node. Target adapters can add a wrapper mapping or a bounded list
+of documents or paths. Inputs
 are synthetic and contain no real credentials.
 
 Each method runs in a separate subprocess with a 30-second wall-clock limit.
@@ -141,13 +142,13 @@ Reproducer index:
 
 ## Automation
 
-The workflow prepared for `.github/workflows/fuzz.yml` runs the existing parsing
+The published workflow at `.github/workflows/fuzz.yml` runs the existing parsing
 tests and `fuzz.py` on pushes and pull requests to main, plus manual dispatch.
 It installs only requirements-fuzz.txt, records an explicit discovery-mode
 summary, and uploads JSON reproducers plus the console log as a 30-day artifact.
 The latest execution and artifacts are available under the repository's Actions
-tab after the workflow is published. Broader scanner CI and forensic
-instrumentation remain separate assignment work.
+tab. Forensic instrumentation and the final assignment report remain separate
+work; the original scanner integration tests with external paths are not included.
 
 Workflow references: [GitHub's Python workflow guide](https://docs.github.com/en/actions/tutorials/build-and-test-code/python)
 and [artifact upload documentation](https://github.com/actions/upload-artifact).
@@ -161,3 +162,9 @@ The finite campaign does not guarantee that every defect is found. Findings
 depend on the stated helper contracts; the report keeps shared root causes and
 generated boundary inputs explicit. Final personal lessons learned belong in
 the student's SQA-REPO.md after reviewing and understanding the results.
+
+## Verified GitHub Actions execution
+
+The first push-triggered run, [Parser fuzzing #1](https://github.com/rtl0019/RyansTeam-FALL2026-SQA/actions/runs/41898382445), completed successfully on November 4, 2026. Its summary records 10/10 methods, 3,000 cases, and 12 finding groups. The run also completed the existing parsing tests and published the parser-fuzz-evidence artifact. The workflow was added through GitHub's signed-in web editor because the local Git authentication lacks workflow upload scope; no account permission changes were needed.
+
+![Successful automatic fuzz run](evidence/fuzz-baseline/github-actions.png)
