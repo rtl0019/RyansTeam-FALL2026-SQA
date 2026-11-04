@@ -1,0 +1,15 @@
+attrs==26.1.0
+click==8.1.8
+colorama==0.4.6
+jschema-to-python==1.2.3
+jsonpickle==4.1.4
+numpy==2.3.5
+pandas==3.0.1
+pbr==6.1.0
+python-dateutil==2.9.0.post0
+ruamel.yaml==0.17.21
+sarif-om==1.0.4
+six==1.17.0
+typer==0.9.0
+typing_extensions==4.16.0
+tzdata==2026.5

@@ -1,0 +1,11 @@
+numpy==2.3.5
+pandas==3.0.1
+python-dateutil==2.9.0.post0
+six==1.17.0
+tzdata==2026.5
+ruamel.yaml==0.17.21
+sarif-om==1.0.4
+jschema-to-python==1.2.3
+typer==0.9.0
+click==8.1.8
+pbr==6.1.0
