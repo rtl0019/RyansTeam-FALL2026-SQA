@@ -1,0 +1,20 @@
+{
+  "instrumented_methods": [
+    "keyMiner",
+    "getKeyRecursively",
+    "getValsFromKey",
+    "find_json_path_keys",
+    "update_json_paths",
+    "getSingleDict4MultiDocs",
+    "loadMultiYAML",
+    "checkParseError",
+    "checkIfValidK8SYaml",
+    "readYAMLAsStr"
+  ],
+  "method_count": 10,
+  "calls": 47,
+  "records": 96,
+  "error_outcomes": 2,
+  "secret_value_absent": true,
+  "validation": "passed"
+}

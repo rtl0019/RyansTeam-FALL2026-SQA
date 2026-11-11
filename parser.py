@@ -14,7 +14,7 @@ import pathlib as pl
 import re
 import subprocess
 import os
-
+from forensic_logging import forensic
 #update basepath
 base_path = r" "
 
@@ -30,7 +30,7 @@ def checkIfWeirdYAML(yaml_script):
         val = True 
     return val 
 
-
+@forensic
 def keyMiner(dic_, value):
   '''
   If you give a value, then this function gets the corresponding key, and the keys that call the key 
@@ -52,7 +52,7 @@ def keyMiner(dic_, value):
         return [str(i)] + p
 
 
-
+@forensic
 def getKeyRecursively(  dict_, list2hold,  depth_ = 0  ) :
     '''
     gives you ALL keys in a regular/nested dictionary 
@@ -89,7 +89,7 @@ def getValuesRecursively(  dict_   ) :
     else: 
         yield dict_ 
 
-
+@forensic
 def checkIfValidK8SYaml(path2yaml):
     val2ret   = False 
     dict_as_list = loadMultiYAML( path2yaml )
@@ -108,7 +108,7 @@ def checkIfValidK8SYaml(path2yaml):
     return val2ret
 
 
-
+@forensic
 def getValsFromKey(dict_, target, list_holder  ):
     '''
     If you give a key, then this function gets the corresponding values 
@@ -131,14 +131,14 @@ def checkIfValidHelm(path_script):
     if ( (constants.HELM_KW in path_script) or (constants.CHART_KW in path_script) or (constants.SERVICE_KW in path_script) or (constants.INGRESS_KW in path_script)  or(constants.HELM_DEPLOY_KW in path_script) or (constants.CONFIG_KW in path_script) )  and (constants.VALUE_KW in path_script) :
         val_ret = True 
     return val_ret
-
+@forensic
 def readYAMLAsStr( path_script ):
     yaml_as_str = constants.YAML_SKIPPING_TEXT
     with open( path_script , constants.FILE_READ_FLAG) as file_:
         yaml_as_str = file_.read()
     return yaml_as_str
 
-# This function checks whether our parser throws an exception for reading the YAML file. 
+@forensic  # This function checks whether our parser throws an exception for reading the YAML file.
 def checkParseError( path_script ):
     flag = True
     with open(path_script, constants.FILE_READ_FLAG) as yml:
@@ -156,7 +156,7 @@ def checkParseError( path_script ):
             flag = False
             print( constants.YAML_SKIPPING_TEXT  )
     return flag
-
+@forensic
 def loadMultiYAML( script_ ):
     dicts2ret = []  
     with open(script_, constants.FILE_READ_FLAG  ) as yml_content :
@@ -228,7 +228,7 @@ def count_initial_comment_line (filepath):
 the parent_path (root jsonpath), paths(additional paths) parameters are optional 
 
 This function returns jsonpath for each key in the yaml file and also populates key_jsonpath_mapping dictionary"""
-
+@forensic
 def find_json_path_keys(json_file, parent_path='', paths=None):
     #key_jsonpath_mapping = {}
     # print(type(json_file))
@@ -296,7 +296,7 @@ def find_json_path_keys(json_file, parent_path='', paths=None):
 
 """"The following function is used to update the json path in the key_jsonpath_mapping dictionary.
 Useful in MultiYaml file format but redundant in single yaml Need to merge with the above function """
-
+@forensic
 def update_json_paths (paths):
     #[3].metadata.name --> .metadata.name
     regex_remove_initial_index = re.compile("^/?(\[)([0-9])+(\])")
@@ -361,7 +361,7 @@ def show_line_for_paths(  filepath, key): #key_jsonpath_mapping is a global dict
     return lines
 
 
-
+@forensic
 def getSingleDict4MultiDocs( lis_dic ):
     dict2ret = {} 
     key_lis  = []

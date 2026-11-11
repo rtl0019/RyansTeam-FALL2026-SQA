@@ -18,7 +18,7 @@ This project applies software quality assurance activities to the supplied SLI-K
 - Existing parsing tests: 23 passed during setup on October 26, 2026.
 - Sample scan: CSV and SARIF reports generated successfully during setup.
 - Fuzzing implemented for 10 parser methods; two seeds completed 6,000 cases and exposed nine documented defect categories. See [FUZZING.md](FUZZING.md) and [baseline evidence](evidence/fuzz-baseline/summary.json).
-- Forensic instrumentation and the final assignment report remain pending.
+- Forensic instrumentation completed for 10 parser methods, with validated execution logs and five regression tests. See [FORENSICS.md](FORENSICS.md). Forensic CI integration and the final assignment report remain pending.
 
 ## Run locally on Windows
 
@@ -50,12 +50,11 @@ Some other original tests depend on paths from the original author's machine and
 ## Assignment deliverables still to complete
 
 - Review the findings in FUZZING.md and incorporate the fuzzing results into the final report.
-- Forensic instrumentation of 10 Python methods.
 - Integrate forensic execution evidence into the existing parser-test/fuzz CI workflow after instrumentation.
 - SQA-REPO.md describing completed activities and personal lessons learned.
 - Code, logs, and screenshots demonstrating execution.
 
-The supplied workflow is preserved at reference/python.build.yml. The active .github/workflows/fuzz.yml automatically runs the parsing tests and fuzz.py on pushes and pull requests to main. [The first run succeeded](https://github.com/rtl0019/RyansTeam-FALL2026-SQA/actions/runs/41898382445), with downloadable evidence and an explicit discovery-mode summary. Forensic instrumentation is still pending.
+The supplied workflow is preserved at reference/python.build.yml. The active .github/workflows/fuzz.yml automatically runs the parsing tests and fuzz.py on pushes and pull requests to main. [The first run succeeded](https://github.com/rtl0019/RyansTeam-FALL2026-SQA/actions/runs/41898382445), with downloadable evidence and an explicit discovery-mode summary. Forensic instrumentation and local evidence are documented in [FORENSICS.md](FORENSICS.md); its CI integration remains pending.
 
 ## Publication preparation
 

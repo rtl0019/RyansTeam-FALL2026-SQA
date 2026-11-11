@@ -166,3 +166,5 @@ cython_debug/
 # Fuzz scratch runs (baseline evidence is tracked separately)
 /fuzz-results/
 /evidence/fuzz-seed-5710/
+
+/forensic-results/

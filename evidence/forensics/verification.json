@@ -1,0 +1,22 @@
+{
+  "parsing_tests_passed": 23,
+  "forensic_tests_passed": 5,
+  "fuzz_seed": 5710,
+  "fuzz_cases": 3000,
+  "finding_groups": 12,
+  "baseline_replays_exit_1": [
+    "08391fe626e5.json",
+    "2e00510aefe4.json",
+    "394be37c66f3.json",
+    "4c3cb7c61977.json",
+    "566944e285a1.json",
+    "5b1203b61aef.json",
+    "67d7b50e3d5c.json",
+    "6bd7c0543bc1.json",
+    "879dbc6423ec.json",
+    "951e3d0669be.json",
+    "a1e136eea184.json",
+    "e16f3bb9e2d1.json"
+  ],
+  "note": "Expected bug replays still fail as documented; bugs remain unfixed."
+}
