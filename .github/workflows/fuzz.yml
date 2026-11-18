@@ -1,4 +1,4 @@
-name: Parser fuzzing
+name: SQA verification
 
 on:
   push:
@@ -29,31 +29,48 @@ jobs:
       - name: Install parser and fuzz dependencies
         run: python -m pip install -r requirements-fuzz.txt
       - name: Run existing parsing tests
-        run: python TEST_PARSING.py
+        run: python TEST_PARSING.py 2>&1 | tee parsing-tests.txt
+      - name: Run forensic regression tests
+        run: python TEST_FORENSICS.py 2>&1 | tee forensic-tests.txt
+      - name: Demonstrate and validate ten instrumented methods
+        run: python forensics_demo.py --output forensic-results/events.jsonl | tee forensic-run.txt
       - name: Fuzz ten parser methods
         run: python fuzz.py --seed 5710 --cases 300 --timeout 30 --output fuzz-results | tee fuzz-run.txt
-      - name: Publish honest discovery summary
+      - name: Publish verification summary
         if: always()
         run: |
           python - <<'PY'
           import json, os
           from pathlib import Path
-          path = Path('fuzz-results/summary.json')
-          if path.exists():
-              data = json.loads(path.read_text())
-              with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as out:
-                  out.write('## Parser fuzzing results\n\n')
-                  out.write(f"Completed {data['completed_target_count']}/10 methods; {data['total_cases']} cases.\n\n")
-                  out.write(f"**{data['finding_groups']} finding groups** (some share a root cause).\n\n")
-                  out.write('Discovery mode reports upstream bugs without failing the job. A green job means the campaign completed, not that the code is bug-free. Infrastructure errors fail the job. See the evidence artifact and FUZZING.md.\n')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as out:
+              out.write('## SQA verification results\n\n')
+              path = Path('fuzz-results/summary.json')
+              if path.exists():
+                  data = json.loads(path.read_text())
+                  out.write(f"Fuzzing: **{data['completed_target_count']}/10 methods**, **{data['total_cases']} cases**, **{data['finding_groups']} finding groups**.\n\n")
+                  out.write('Discovery mode reports upstream bugs without failing solely on findings. Green means the campaign completed, not bug-free code. Infrastructure errors fail the job.\n\n')
+              else:
+                  out.write('Fuzzing summary unavailable; inspect the failed or skipped steps.\n\n')
+              path = Path('forensic-results/events.summary.json')
+              if path.exists():
+                  data = json.loads(path.read_text())
+                  out.write(f"Forensics: **{data['method_count']}/10 methods**, **{data['calls']} calls**, **{data['records']} records**; validation **{data['validation']}**.\n\n")
+                  out.write(f"Expected error outcomes: {data['error_outcomes']}. Synthetic private value absent: {data['secret_value_absent']}.\n\n")
+              else:
+                  out.write('Forensic summary unavailable; inspect the failed or skipped steps.\n\n')
+              out.write('See the artifact for parsing and forensic test output, fuzz reproducers, and forensic JSONL events.\n')
           PY
-      - name: Save fuzzing evidence
+      - name: Save SQA evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: parser-fuzz-evidence
+          name: sqa-verification-evidence
           path: |
             fuzz-results/
+            forensic-results/
+            parsing-tests.txt
+            forensic-tests.txt
+            forensic-run.txt
             fuzz-run.txt
           retention-days: 30
-          if-no-files-found: warn
+          if-no-files-found: error
