@@ -50,4 +50,4 @@ Logs exclude YAML contents, input values, exception messages, local variables an
 
 This is a synchronous, single-process educational trace, not a tamper-proof audit system or full digital-forensic acquisition tool. It does not hash/sign records or record source-file contents. Abrupt process termination can leave missing outcomes; a disk-write failure warns and marks the session incomplete, and the demo fails validation. Logging overhead affects measured timing. The evidence must be kept with its corresponding source revision.
 
-Forensic CI execution and a CI screenshot are the next integration step; the existing workflow currently runs parsing tests and fuzzing only.
+The combined GitHub Actions workflow now runs the five forensic tests and the demonstration, alongside parsing tests and fuzzing. [The verified run](https://github.com/rtl0019/RyansTeam-FALL2026-SQA/actions/runs/44388404621) passed on November 18, 2026. See the [CI summary screenshot](evidence/final-ci/summary.jpg) and [forensic output screenshot](evidence/final-ci/forensics.jpg).

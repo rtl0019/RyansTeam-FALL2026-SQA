@@ -1,0 +1,32 @@
+{
+  "audit_date": "2026-11-18",
+  "relative_document_links_checked": 52,
+  "fuzz_targets": 10,
+  "instrumented_methods": [
+    "keyMiner",
+    "getKeyRecursively",
+    "checkIfValidK8SYaml",
+    "getValsFromKey",
+    "readYAMLAsStr",
+    "checkParseError",
+    "loadMultiYAML",
+    "find_json_path_keys",
+    "update_json_paths",
+    "getSingleDict4MultiDocs"
+  ],
+  "parsing_tests_passed": 23,
+  "forensic_tests_passed": 5,
+  "ci_run": "https://github.com/rtl0019/RyansTeam-FALL2026-SQA/actions/runs/44388404621",
+  "ci_commit": "9e960bf88798632b071c4f5d1647c7bb1cc12c73",
+  "ci_status": "success",
+  "ci_fuzz_cases": 3000,
+  "ci_finding_groups": 12,
+  "ci_forensic_calls": 47,
+  "ci_forensic_records": 96,
+  "artifact_name": "sqa-verification-evidence",
+  "artifact_sha256": "907bac3344c2d842d0d26a721f804b6f1ec6c9e1c821ffdf0295a849396bdfce",
+  "student_actions_not_verified": [
+    "course spreadsheet registration",
+    "Canvas submission"
+  ]
+}

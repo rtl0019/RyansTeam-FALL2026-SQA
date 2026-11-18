@@ -147,8 +147,9 @@ tests and `fuzz.py` on pushes and pull requests to main, plus manual dispatch.
 It installs only requirements-fuzz.txt, records an explicit discovery-mode
 summary, and uploads JSON reproducers plus the console log as a 30-day artifact.
 The latest execution and artifacts are available under the repository's Actions
-tab. Forensic instrumentation and the final assignment report remain separate
-work; the original scanner integration tests with external paths are not included.
+tab. The final workflow also runs forensic regression tests and validates the forensic
+demo; see [SQA-REPO.md](SQA-REPO.md) for the combined run and screenshots.
+The original scanner integration tests with external paths are not included.
 
 Workflow references: [GitHub's Python workflow guide](https://docs.github.com/en/actions/tutorials/build-and-test-code/python)
 and [artifact upload documentation](https://github.com/actions/upload-artifact).
